@@ -16,7 +16,10 @@ connectDb()
   .catch(err => {
     console.log(err, "Db connection error");
   });
-
+// app.use("/api", function(req, res, next) {
+//   console.log("req", req);
+//   next();
+// });
 app.use("/api", userRouter);
 
 app.listen(3000);

@@ -24,6 +24,7 @@ exports.loginSchema = (req, res, next) => {
       .required(),
     password: Joi.string().required()
   });
+  console.log("req.body", req.body);
   const { error } = register.validate(req.body);
   if (error) {
     return res.status(400).json({ error: error.details[0].message });
