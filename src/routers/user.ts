@@ -10,6 +10,7 @@ const router = express.Router();
 
 router.get("/", (req: Request, res: Response) => {
   const authorization = req.headers.authorization;
+  console.log("authorization ", authorization)
   if (authorization === null || authorization === undefined)
     return res.status(401).json({ msg: "unauthorized" });
   if (authorization.startsWith("Bearer ")) {
