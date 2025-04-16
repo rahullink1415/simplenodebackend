@@ -5,7 +5,6 @@ const connectDb = async () => {
   try {//mongodb+srv://rhl:<db_password>@cluster0.n1ljfvk.mongodb.net/
     return await mongoose.connect(MONGO_DB_URL, {
       // useNewUrlParser: true,  // useNewUrlParser is deprecated
-      useUnifiedTopology: true,
       serverSelectionTimeoutMS: 5000 // Timeout after 5s instead of 30s
     });
     console.log("coonnection db db connected");

@@ -1,6 +1,8 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import express from "express";
 
+const router = express.Router();
 /* GET users listing. */
 
 // router.post("/upload", upload.single("profile"), (req, res, next) =>{

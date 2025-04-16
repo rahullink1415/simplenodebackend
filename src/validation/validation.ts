@@ -1,11 +1,7 @@
-import { Request, Response, NextFunction } from "express";
+import { Request, Response, NextFunction, RequestHandler } from "express";
 import Joi from "@hapi/joi";
 
-export const registerSchema = (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+export const registerSchema : RequestHandler= (req,res,next) => {
   const register = Joi.object({
     name: Joi.string().optional(),
     email: Joi.string()
@@ -17,17 +13,13 @@ export const registerSchema = (
   });
   const { error } = register.validate(req.body);
   if (error) {
-    return res.status(400).json({ error: error.details[0].message });
+     res.status(400).json({ error: error.details[0].message });
+     return;
   } else {
     next();
   }
 };
-
-export const loginSchema = (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+export const loginSchema : RequestHandler = ( req,res,next) => {
   const register = Joi.object({
     email: Joi.string()
       .email()
@@ -38,7 +30,8 @@ export const loginSchema = (
   console.log("req.body", req.body);
   const { error } = register.validate(req.body);
   if (error) {
-    return res.status(400).json({ error: error.details[0].message });
+     res.status(400).json({ error: error.details[0].message });
+     return;
   } else {
     next();
   }
