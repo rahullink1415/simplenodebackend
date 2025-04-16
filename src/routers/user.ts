@@ -5,6 +5,10 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { SECRET_KEY } from "../constants";
 import { registerSchema, loginSchema } from "../validation/validation";
+import cors from "cors";
+import morgan from "morgan";
+import { config } from "dotenv"; // Import the config function from dotenv
+
 const router = express.Router();
 
 /* GET users listing. */
@@ -76,12 +80,13 @@ router.post("/register", registerSchema, async (req: Request, res: Response): Pr
           bcrypt.hash(plainTextPassword, salt, (error, hash) => {
             if (err) return res.status(400).json(error);
             req.body.password = hash;
-            User.create(req.body)
+           User.create(req.body)
               .then(aa => {
-                return res.status(200).json({ msg: "user created" });
+                console.log("user created---",aa )
+                return res.status(200).json({ msg: "user created",data:aa });
               })
               .catch(e => {
-                return res.status(500).json({ msg: e });
+                return res.status(500).json({ msg: e.message });
               });
           });
         });
