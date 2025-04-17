@@ -4,7 +4,7 @@
   "description": "simple backend code! with type script.",
   "main": "dist/app.js",
   "scripts": {
-    "build": "tsc",
+    "build": "node --max-old-space-size=4096 node_modules/typescript/bin/tsc",
     "prestart": "npm run build",
     "dev": "nodemon dist/app.js",
     "start": "node dist/app.js",
